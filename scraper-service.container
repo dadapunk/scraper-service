@@ -3,9 +3,10 @@ Description=Scraper Service
 After=network.target
 
 [Container]
-Image=localhost/scraper-service:latest
-PublishPort=8090:8090
+Image=ghcr.io/dadapunk/scraper-service:latest
+Network=host
 EnvironmentFile=/etc/scraper-service/.env
+AutoUpdate=registry
 
 [Service]
 Restart=on-failure
