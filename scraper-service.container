@@ -1,0 +1,15 @@
+[Unit]
+Description=Scraper Service
+After=network.target
+
+[Container]
+Image=localhost/scraper-service:latest
+PublishPort=8090:8090
+EnvironmentFile=/etc/scraper-service/.env
+
+[Service]
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
