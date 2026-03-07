@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/playwright/python:v1.44.0-jammy
+FROM mcr.microsoft.com/playwright/python:v1.49.0-noble
 
 WORKDIR /app
 
@@ -9,7 +9,7 @@ RUN pip install uv --no-cache-dir
 COPY pyproject.toml .
 
 # Install production deps only, using system Python from base image
-RUN uv sync --no-dev --python /usr/bin/python3
+RUN uv sync --no-dev
 
 # Copy application code
 COPY main.py config.py models.py llm.py ./
