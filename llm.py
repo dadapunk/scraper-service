@@ -10,15 +10,22 @@ Dado el contenido Markdown de una página de búsqueda de supermercado y el tér
 
 Devuelve un JSON con:
 {"products": [
-  {"name": "nombre completo del producto", "brand": "marca", "price": 2.49, "unit": "g", "unit_price": 16.6},
+  {"name": "nombre completo del producto", "brand": "marca", "price": 2.49, "unit": "ud", "unit_price": 16.6},
   ...
 ]}
 
 - price: precio en euros (número)
-- unit: unidad de venta ("ud", "kg", "g", "l", "ml")
+- unit: unidad de venta apropiada para el producto:
+  - "ud" para productos vendidos por unidad (botellas, latas, paquetes, piezas)
+  - "kg" para productos vendidos por kilo
+  - "g" para productos vendidos por gramos
+  - "l" para productos vendidos por litro
+  - "ml" para productos vendidos por mililitros
 - unit_price: precio por kg o litro si aparece en la página, 0 si no
-- Incluye solo productos relevantes para la búsqueda
-- Si no hay productos relevantes, devuelve {"products": []}
+- IMPORTANTE: incluye ÚNICAMENTE productos que sean exactamente del mismo tipo de alimento o bebida que el término buscado.
+  Si buscas "zumo" incluye solo zumos. Si buscas "cerveza" incluye solo cervezas. Si buscas "jamón" incluye solo jamones.
+  NO incluyas productos de otras categorías aunque aparezcan en la misma página.
+- Si no hay productos del mismo tipo, devuelve {"products": []}
 """.strip()
 
 def _is_quota_error(message: str) -> bool:
