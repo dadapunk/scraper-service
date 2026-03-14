@@ -9,7 +9,7 @@ Scraper Service is a Python-based web scraping microservice built with FastAPI a
 - **FastAPI REST API** for easy integration
 - **Crawl4AI** for scraping JavaScript-heavy single-page applications (SPAs)
 - **LLM integration** for intelligent content extraction using OpenAI-compatible APIs (e.g., Google's Gemini)
-- **Multi-source support**: currently supports Bonpreu supermarket
+- **Multi-source support**: currently supports Bonpreu supermarket, Lidl supermarket, and Idealista real estate
 
 ## Quick Start
 
@@ -61,6 +61,17 @@ curl -X POST http://localhost:8090/search \
   }'
 ```
 
+#### Search Real Estate
+```bash
+curl -X POST http://localhost:8090/search \
+  -H "Content-Type: application/json" \
+  -d '{
+    "source": "idealista",
+    "query": "Barcelona",
+    "limit": 10
+  }'
+```
+
 ## Development
 
 ### Dependencies
@@ -84,8 +95,11 @@ scraper-service/
 ├── scrapers/
 │   ├── base.py           # Abstract base scraper class
 │   ├── __init__.py       # Scraper registry
-│   └── supermarkets/
-│       └── bonpreu.py    # Bonpreu supermarket scraper
+│   ├── supermarkets/
+│   │   ├── bonpreu.py    # Bonpreu supermarket scraper
+│   │   └── lidl.py       # Lidl supermarket scraper
+│   └── realestate/
+│       └── idealista.py  # Idealista real estate scraper
 ├── pyproject.toml        # Dependency management with uv
 ├── .env.example          # Example configuration
 ├── Containerfile         # Podman container build file
