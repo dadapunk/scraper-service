@@ -1,0 +1,18 @@
+{
+  "workflow": "get-shit-done",
+  "version": "1.0",
+  "project": "scraper-service",
+  "auto": false,
+  "preferences": {
+    "code_style": "pythonic",
+    "testing": "pytest",
+    "documentation": "minimal",
+    "commit_style": "conventional"
+  },
+  "phase_defaults": {
+    "verification": "goal-backward",
+    "execution": "atomic-commits"
+  },
+  "created": "2026-03-26T15:55:00Z",
+  "brownfield": true
+}
